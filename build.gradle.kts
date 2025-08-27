@@ -1,8 +1,4 @@
-import org.gradle.internal.extensions.stdlib.toDefaultLowerCase
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.net.URI
-import java.net.URL
 
 plugins {
 	id("maven-publish")
@@ -88,7 +84,7 @@ dependencies {
 
 	transitiveImplementation(implementation(include("me.carleslc:Simple-Yaml:1.8.4") as Dependency) as Dependency)
 	transitiveImplementation(implementation(include("com.mojang:brigadier:1.3.10") as Dependency) as Dependency)
-	transitiveImplementation(implementation(include(files("libs/jansi-2.4.0.jar")) as Dependency) as Dependency)
+	transitiveImplementation(implementation(include("org.fusesource.jansi:jansi:2.4.0") as Dependency) as Dependency)
 }
 
 tasks.withType<ProcessResources> {

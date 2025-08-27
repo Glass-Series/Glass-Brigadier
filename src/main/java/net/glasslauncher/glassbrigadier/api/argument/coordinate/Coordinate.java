@@ -4,7 +4,7 @@ import net.glasslauncher.glassbrigadier.api.command.GlassCommandSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
-import net.modificationstation.stationapi.api.util.math.Vector2f;
+import org.lwjgl.util.vector.Vector2f;
 
 public class Coordinate {
     final CoordinatePart x;

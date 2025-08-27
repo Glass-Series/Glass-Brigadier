@@ -38,12 +38,12 @@ public class StorageUtils {
 
     public static AlphaWorldStorage getWorldStorage() {
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            return (AlphaWorldStorage) Minecraft.INSTANCE.world.dimensionData;
+            return (AlphaWorldStorage) Minecraft.INSTANCE.world.storage;
         }
 
         //noinspection deprecation
         MinecraftServer server = (MinecraftServer) FabricLoader.getInstance().getGameInstance();
         //noinspection OptionalGetWithoutIsPresent If this is null, we're ALL fucked.
-        return (AlphaWorldStorage) server.getWorld(DimensionRegistry.INSTANCE.getLegacyId(Identifier.of(Namespace.MINECRAFT, "overworld")).getAsInt()).dimensionData;
+        return (AlphaWorldStorage) server.getWorld(DimensionRegistry.INSTANCE.getLegacyId(Identifier.of(Namespace.MINECRAFT, "overworld")).getAsInt()).storage;
     }
 }

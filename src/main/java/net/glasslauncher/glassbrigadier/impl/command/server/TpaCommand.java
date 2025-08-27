@@ -11,7 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import net.modificationstation.stationapi.api.util.Formatting;
-import net.modificationstation.stationapi.api.util.math.Vector2f;
+import org.lwjgl.util.vector.Vector2f;
 
 import java.util.HashMap;
 import java.util.Map;

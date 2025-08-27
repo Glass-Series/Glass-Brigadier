@@ -12,8 +12,7 @@ import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.registry.DimensionRegistry;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.Namespace;
-import net.modificationstation.stationapi.api.util.Util;
-import net.modificationstation.stationapi.api.util.math.Vector2f;
+import org.lwjgl.util.vector.Vector2f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -31,7 +30,7 @@ public class ExtendedDedicatedServerGUI implements GlassCommandSource {
 
     @Shadow public String getName() { throw new AssertionError(); }
 
-    @Shadow public void sendMessage(String message) {};
+    @Shadow public void sendMessage(String message) {}
 
     @Override public String getSourceName() {
         return getName();

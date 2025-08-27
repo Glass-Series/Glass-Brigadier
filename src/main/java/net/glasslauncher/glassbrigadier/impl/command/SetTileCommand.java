@@ -35,7 +35,7 @@ public class SetTileCommand implements CommandProvider {
         Vec3i pos = getCoordinate(context, "pos").getVec3i(context.getSource());
         BlockId tile = getTileId(context, "id");
         (context.getSource()).getWorld().setBlock(pos.x, pos.y, pos.z, tile.numericId);
-        sendFeedbackAndLog(context.getSource(), "Set block at" + pos.x + " " + pos.y + " " + pos.z + " to " + tile.numericId);
+        sendFeedbackAndLog(context.getSource(), "Set block at " + pos.x + " " + pos.y + " " + pos.z + " to " + tile.numericId);
         return 0;
     }
 
@@ -44,7 +44,7 @@ public class SetTileCommand implements CommandProvider {
         BlockId tile = getTileId(context, "id");
         int meta = getInteger(context, "meta");
         (context.getSource()).getWorld().setBlock(pos.x, pos.y, pos.z, tile.numericId, meta);
-        sendFeedbackAndLog(context.getSource(), "Set block at" + pos.x + " " + pos.y + " " + pos.z + " to " + tile.numericId + ":" + meta);
+        sendFeedbackAndLog(context.getSource(), "Set block at " + pos.x + " " + pos.y + " " + pos.z + " to " + tile.numericId + ":" + meta);
         return 0;
     }
 }

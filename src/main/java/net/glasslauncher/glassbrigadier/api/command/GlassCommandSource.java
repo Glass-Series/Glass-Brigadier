@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.modificationstation.stationapi.api.util.math.Vector2f;
+import org.lwjgl.util.vector.Vector2f;
 
 import javax.annotation.Nullable;
 import java.util.List;

@@ -10,5 +10,5 @@ accessible field net/minecraft/server/PlayerManager bannedIps Ljava/util/Set;
 accessible field net/minecraft/server/PlayerManager bannedPlayers Ljava/util/Set;
 accessible field net/minecraft/world/storage/AlphaWorldStorage dir Ljava/io/File;
 accessible field net/minecraft/world/storage/AlphaWorldStorage playerDataDir Ljava/io/File;
-accessible field net/minecraft/world/World dimensionData Lnet/minecraft/world/storage/WorldStorage;
+accessible field net/minecraft/world/World storage Lnet/minecraft/world/storage/WorldStorage;
 accessible field net/minecraft/server/MinecraftServer commandHandler Lnet/minecraft/server/command/ServerCommandHandler;
