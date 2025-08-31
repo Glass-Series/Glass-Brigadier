@@ -2,6 +2,8 @@ package net.glasslauncher.glassbrigadier.impl.command.vanilla;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.glasslauncher.glassbrigadier.api.command.CommandProvider;
 import net.glasslauncher.glassbrigadier.api.command.GlassCommandSource;
 import net.glasslauncher.glassbrigadier.api.entity.EntityUtils;
@@ -72,8 +74,8 @@ public class TeleportCommand implements CommandProvider {
     }
 
     private void teleport(Entity entity, Vec3d position, float yaw, float pitch, GlassCommandSource sender) {
-        if (entity instanceof ServerPlayerEntity) {
-            ((ServerPlayerEntity)entity).networkHandler.teleport(position.x, position.y, position.z, yaw, pitch);
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+            serverPlayerEntity.networkHandler.teleport(position.x, position.y, position.z, yaw, pitch);
         } else {
             entity.setPositionAndAnglesKeepPrevAngles(position.x, position.y, position.z, yaw, pitch);
         }

@@ -128,7 +128,7 @@ public record PermissionNode<T>(
     }
 
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return path;
     }
 
