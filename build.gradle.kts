@@ -120,7 +120,7 @@ publishing {
 		mavenLocal()
 		if (project.hasProperty("glass_maven_username")) {
 			maven {
-				url = URI("https://maven.example.com")
+				url = URI("https://maven.glass-launcher.net/releases")
 				credentials {
 					username = "${project.properties["glass_maven_username"]}"
 					password = "${project.properties["glass_maven_password"]}"
