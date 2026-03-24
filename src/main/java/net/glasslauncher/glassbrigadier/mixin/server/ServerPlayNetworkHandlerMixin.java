@@ -47,7 +47,7 @@ public abstract class ServerPlayNetworkHandlerMixin implements GlassCommandSourc
             return;
         }
         try {
-            GlassBrigadier.dispatcher.execute(commandWithoutSlash, this);
+            GlassBrigadier.DISPATCHER.execute(commandWithoutSlash, this);
         } catch (CommandSyntaxException e) {
             this.sendFeedback(e.getMessage());
         }

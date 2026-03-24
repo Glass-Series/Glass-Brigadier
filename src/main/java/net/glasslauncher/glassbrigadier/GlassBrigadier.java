@@ -43,11 +43,14 @@ public class GlassBrigadier {
     public static final Logger LOGGER = NAMESPACE.getLogger("Glass Brigadier");
     public static final boolean AMI_LOADED = FabricLoader.getInstance().isModLoaded("alwaysmoreitems");
 
-    public static final CommandDispatcher<GlassCommandSource> dispatcher = new CommandDispatcher<>();
+    public static final CommandDispatcher<GlassCommandSource> DISPATCHER = new CommandDispatcher<>();
 
     public static File getConfigFile(String... path) {
         return new File("config/" + NAMESPACE, String.join("/", path));
     }
+
+    public static int currentCompletion = 0;
+    public static boolean isTabbed = false;
 
     @EventListener(phase = CommandRegisterEvent.INTERNAL_PHASE)
     public void internalInit(CommandRegisterEvent event) {

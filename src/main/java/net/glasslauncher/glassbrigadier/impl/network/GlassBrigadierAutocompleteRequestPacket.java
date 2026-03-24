@@ -72,10 +72,10 @@ public class GlassBrigadierAutocompleteRequestPacket extends Packet implements M
             return;
         }
 
-        ParseResults<GlassCommandSource> parseResults = GlassBrigadier.dispatcher.parse(incompleteCommand, commandSource);
+        ParseResults<GlassCommandSource> parseResults = GlassBrigadier.DISPATCHER.parse(incompleteCommand, commandSource);
         Suggestions suggestions;
         try {
-            suggestions = GlassBrigadier.dispatcher.getCompletionSuggestions(parseResults, cursorPos).get();
+            suggestions = GlassBrigadier.DISPATCHER.getCompletionSuggestions(parseResults, cursorPos).get();
         } catch (InterruptedException | ExecutionException e) {
             GlassBrigadier.LOGGER.error(e);
             return;

@@ -17,8 +17,8 @@ public class MinecraftServerMixin {
     @Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;loadWorld(Lnet/minecraft/world/storage/WorldStorageSource;Ljava/lang/String;J)V", shift = At.Shift.AFTER))
     void initCommands(CallbackInfoReturnable<Boolean> cir) {
         GlassBrigadier.LOGGER.info("Initializing commands...");
-        StationAPI.EVENT_BUS.post(CommandRegisterEvent.builder().commandDispatcher(GlassBrigadier.dispatcher).build());
-        GlassBrigadier.LOGGER.info("Registered {} commands.", GlassBrigadier.dispatcher.getRoot().getChildren().size());
+        StationAPI.EVENT_BUS.post(CommandRegisterEvent.builder().commandDispatcher(GlassBrigadier.DISPATCHER).build());
+        GlassBrigadier.LOGGER.info("Registered {} commands.", GlassBrigadier.DISPATCHER.getRoot().getChildren().size());
         RoleManagerImpl.setupRoleManager();
         UserPermissionManagerImpl.setupPermissionManager();
     }

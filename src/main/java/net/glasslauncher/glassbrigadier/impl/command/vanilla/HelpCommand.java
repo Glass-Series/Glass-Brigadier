@@ -9,7 +9,9 @@ import com.mojang.brigadier.context.ParsedCommandNode;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.mojang.brigadier.tree.CommandNode;
+import com.mojang.brigadier.tree.LiteralCommandNode;
 import net.glasslauncher.glassbrigadier.GlassBrigadier;
+import net.glasslauncher.glassbrigadier.api.argument.command.CommandArgumentType;
 import net.glasslauncher.glassbrigadier.api.command.CommandProvider;
 import net.glasslauncher.glassbrigadier.api.command.GlassCommandSource;
 import net.glasslauncher.glassbrigadier.impl.argument.DescriptiveLiteralCommandNode;
@@ -34,7 +36,7 @@ public class HelpCommand implements CommandProvider {
                 .then(GlassArgumentBuilder.argument("page", integer(0))
                         .executes(this::showHelpPage)
                 )
-                .then(GlassArgumentBuilder.argument("command", StringArgumentType.greedyString())
+                .then(GlassArgumentBuilder.argument("command", CommandArgumentType.commandArgument())
                         .executes(this::showCommandHelp)
                 );
     }
@@ -44,8 +46,7 @@ public class HelpCommand implements CommandProvider {
         try {
             page = context.getArgument("page", Integer.class);
         } catch (IllegalArgumentException ignored) {}
-
-        Map<CommandNode<GlassCommandSource>, String> commands = GlassBrigadier.dispatcher.getSmartUsage(GlassBrigadier.dispatcher.getRoot(), context.getSource());
+        Map<CommandNode<GlassCommandSource>, String> commands = GlassBrigadier.DISPATCHER.getSmartUsage(GlassBrigadier.DISPATCHER.getRoot(), context.getSource());
         int maxPages = (int) Math.ceil(commands.size() / 9d);
 
         if (page > maxPages) {
@@ -74,7 +75,7 @@ public class HelpCommand implements CommandProvider {
 
     public int showCommandHelp(CommandContext<GlassCommandSource> context) throws CommandSyntaxException {
         String command = StringArgumentType.getString(context, "command");
-        ParseResults<GlassCommandSource> parseResults = GlassBrigadier.dispatcher.parse(command, context.getSource());
+        ParseResults<GlassCommandSource> parseResults = GlassBrigadier.DISPATCHER.parse(command, context.getSource());
         List<ParsedCommandNode<GlassCommandSource>> commandNodes = parseResults.getContext().getNodes();
         if (!parseResults.getExceptions().isEmpty()) {
             //noinspection OptionalGetWithoutIsPresent Intellij needs to update its linter.
@@ -86,7 +87,7 @@ public class HelpCommand implements CommandProvider {
         else {
             CommandNode<GlassCommandSource> commandNode = Iterables.getLast(parseResults.getContext().getNodes()).getNode();
 
-            Map<CommandNode<GlassCommandSource>, String> map = GlassBrigadier.dispatcher.getSmartUsage(commandNode, context.getSource());
+            Map<CommandNode<GlassCommandSource>, String> map = GlassBrigadier.DISPATCHER.getSmartUsage(commandNode, context.getSource());
 
             context.getSource().sendFeedback(GlassBrigadier.systemMessage(" Showing usage for " + RED + command + systemMessageColor() + ":"));
             if (commandNode instanceof DescriptiveLiteralCommandNode<?> literalArgumentBuilder) {
