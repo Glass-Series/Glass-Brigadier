@@ -1,6 +1,7 @@
 package net.glasslauncher.glassbrigadier.impl.network;
 
 import lombok.SneakyThrows;
+import net.glasslauncher.glassbrigadier.GlassBrigadier;
 import net.glasslauncher.glassbrigadier.impl.client.mixinhooks.ChatScreenHooks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.ChatScreen;
@@ -21,7 +22,7 @@ import java.util.List;
 public class GlassBrigadierAutocompleteResponsePacket extends Packet implements ManagedPacket<GlassBrigadierAutocompleteResponsePacket> {
     public static final PacketType<GlassBrigadierAutocompleteResponsePacket> TYPE = PacketType.builder(true, false, GlassBrigadierAutocompleteResponsePacket::new).build();
 
-    List<String> completions;
+    private List<String> completions;
 
     private GlassBrigadierAutocompleteResponsePacket() {
     }
@@ -84,10 +85,10 @@ public class GlassBrigadierAutocompleteResponsePacket extends Packet implements 
 
     @Override
     public void apply(NetworkHandler networkHandler) {
+        GlassBrigadier.currentCompletion = 0;
         Screen screen = Minecraft.INSTANCE.currentScreen;
         if (screen instanceof ChatScreen chatScreen) {
             if (!completions.isEmpty()) {
-                chatScreen.text = "/" + completions.get(0);
                 ((ChatScreenHooks) chatScreen).glass_Essentials$setCompletions(completions);
             }
         }
