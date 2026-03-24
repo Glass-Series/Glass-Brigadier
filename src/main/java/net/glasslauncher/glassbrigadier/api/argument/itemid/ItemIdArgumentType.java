@@ -9,6 +9,7 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.glasslauncher.glassbrigadier.impl.utils.StringReaderUtils;
+import net.glasslauncher.mods.gcapi3.api.CharacterUtils;
 import net.modificationstation.stationapi.api.registry.ItemRegistry;
 import net.modificationstation.stationapi.api.util.Identifier;
 
@@ -58,11 +59,16 @@ public class ItemIdArgumentType implements ArgumentType<ItemId> {
     public ItemId parse(StringReader reader) throws CommandSyntaxException {
         int cursor = reader.getCursor();
         String id = StringReaderUtils.readId(reader);
-        if (!getValidValues().contains(id)) {
-            reader.setCursor(cursor);
-            throw NOT_VALID_ID.createWithContext(reader);
+
+        if (CharacterUtils.isInteger(id)) {
+            return new ItemId(Integer.parseInt(id));
         }
-        return new ItemId(id);
+        if (ItemRegistry.INSTANCE.get(Identifier.of(id)) != null) {
+            return new ItemId(id);
+        }
+
+        reader.setCursor(cursor);
+        throw NOT_VALID_ID.createWithContext(reader);
     }
 
     @Override
