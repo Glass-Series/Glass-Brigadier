@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "glassessentials",
+  "id": "glassbrigadier",
   "version": "${version}",
 
   "name": "Glass Essentials",
-  "description": "A mod that aims to add a bunch of \"essential\" admin and player commands, along with a robust permissions system.",
+  "description": "An implementation of brigadier for b1.7.3 with a handful of \"essential\" commands and a permissions system. Works in singleplayer and multiplayer.",
   "authors": [
     "calmilamsy",
     "williambl"
@@ -27,7 +27,7 @@
     "stationapi:event_bus_server": [
     ],
     "gcapi3": [
-      "net.glasslauncher.glassbrigadier.GlassBrigadierConfig"
+      "net.glasslauncher.glassbrigadier.GlassBrigadier"
     ]
   },
   "mixins": [

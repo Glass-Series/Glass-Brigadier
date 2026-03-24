@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.glasslauncher.glassbrigadier.GlassBrigadier;
+import net.glasslauncher.glassbrigadier.GlassBrigadierConfig;
 import net.glasslauncher.glassbrigadier.api.command.GlassCommandSource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.NetworkHandler;
@@ -65,7 +66,7 @@ public class GlassBrigadierAutocompleteRequestPacket extends Packet implements M
         if (networkHandler instanceof GlassCommandSource glassCommandSource) {
             commandSource = glassCommandSource;
         }
-        else if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+        else if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT && GlassBrigadier.CONFIG.singlePlayerCommands) {
             commandSource = (GlassCommandSource) Minecraft.INSTANCE;
         }
         else {
