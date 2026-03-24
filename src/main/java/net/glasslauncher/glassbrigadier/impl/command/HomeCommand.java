@@ -2,6 +2,9 @@ package net.glasslauncher.glassbrigadier.impl.command;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.glasslauncher.glassbrigadier.GlassBrigadier;
 import net.glasslauncher.glassbrigadier.api.command.CommandProvider;
 import net.glasslauncher.glassbrigadier.api.command.GlassCommandSource;
 import net.glasslauncher.glassbrigadier.api.storage.player.PlayerStorageFile;
@@ -48,7 +51,7 @@ public class HomeCommand implements CommandProvider {
             return;
         }
 
-        if (context.getSource().getPlayer() instanceof ServerPlayerEntity serverPlayerEntity) {
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER && context.getSource().getPlayer() instanceof ServerPlayerEntity serverPlayerEntity) {
             serverPlayerEntity.networkHandler.teleport(homeLoc.get(0), homeLoc.get(1), homeLoc.get(2), serverPlayerEntity.yaw, serverPlayerEntity.pitch);
         }
         else {
@@ -56,6 +59,6 @@ public class HomeCommand implements CommandProvider {
             player.setPositionAndAnglesKeepPrevAngles(homeLoc.get(0), homeLoc.get(1), homeLoc.get(2), player.yaw, player.pitch);
         }
 
-        context.getSource().sendFeedback("Teleported to home \"" + name + "\".");
+        context.getSource().sendFeedback(GlassBrigadier.systemMessage("Teleported to home \"" + name + "\"."));
     }
 }
