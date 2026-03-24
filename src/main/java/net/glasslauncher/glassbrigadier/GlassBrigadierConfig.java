@@ -13,7 +13,7 @@ public class GlassBrigadierConfig {
 
     @ConfigEntry(
             name = "Singleplayer Chat",
-            description = "Allows you to chat in singleplayer. Disables SPC if you turn this off.",
+            description = "Allows you to open chat in singleplayer.",
             nameKey = "config.glassbrigadier.spChat.name",
             descriptionKey= "config.glassbrigadier.spChat.desc"
     )

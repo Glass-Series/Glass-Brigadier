@@ -14,11 +14,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayerEntity.class)
-public abstract class MakeClientPlayerSendMessages extends PlayerEntity {
+public abstract class MakeClientPlayerSendMessagesMixin extends PlayerEntity {
 
     @Shadow protected Minecraft minecraft;
 
-    public MakeClientPlayerSendMessages(World world) {
+    public MakeClientPlayerSendMessagesMixin(World world) {
         super(world);
     }
 
@@ -29,7 +29,7 @@ public abstract class MakeClientPlayerSendMessages extends PlayerEntity {
         }
         if (GlassBrigadier.CONFIG.singlePlayerCommands && message.startsWith("/")) {
             try {
-                GlassBrigadier.dispatcher.execute(message.substring(1), (GlassCommandSource) minecraft);
+                GlassBrigadier.DISPATCHER.execute(message.substring(1), (GlassCommandSource) minecraft);
             } catch (CommandSyntaxException e) {
                 minecraft.inGameHud.addChatMessage(e.getMessage());
             }

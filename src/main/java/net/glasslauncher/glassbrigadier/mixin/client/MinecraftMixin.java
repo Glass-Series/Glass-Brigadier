@@ -33,8 +33,8 @@ public class MinecraftMixin {
     @Inject(method = "init", at = @At("RETURN"))
     void registerCommands(CallbackInfo ci) {
         GlassBrigadier.LOGGER.info("Initializing commands...");
-        StationAPI.EVENT_BUS.post(CommandRegisterEvent.builder().commandDispatcher(GlassBrigadier.dispatcher).build());
-        GlassBrigadier.LOGGER.info("Registered {} commands.", GlassBrigadier.dispatcher.getRoot().getChildren().size());
+        StationAPI.EVENT_BUS.post(CommandRegisterEvent.builder().commandDispatcher(GlassBrigadier.DISPATCHER).build());
+        GlassBrigadier.LOGGER.info("Registered {} commands.", GlassBrigadier.DISPATCHER.getRoot().getChildren().size());
     }
 
     @Inject(method = "setWorld(Lnet/minecraft/world/World;Ljava/lang/String;Lnet/minecraft/entity/player/PlayerEntity;)V", at = @At("HEAD"))

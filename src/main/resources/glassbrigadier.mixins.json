@@ -17,9 +17,9 @@
   "client": [
     "client.MinecraftMixin",
     "client.chatscreenextension.ChatScreenMixin",
-    "client.vanillajank.ExtendTextRenderer",
-    "client.vanillajank.FixFuckedLinebreaks",
-    "client.vanillajank.MakeClientPlayerSendMessages",
+    "client.vanillajank.ExtendTextRendererMixin",
+    "client.vanillajank.FixChatLineBreaksMixin",
+    "client.vanillajank.MakeClientPlayerSendMessagesMixin",
     "commandsource.ExtendedMinecraft"
   ],
   "injectors": {

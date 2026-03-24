@@ -16,9 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(InGameHud.class)
-public class FixFuckedLinebreaks {
-
-    @Shadow private Minecraft minecraft;
+public class FixChatLineBreaksMixin {
 
     @Shadow private List messages;
 

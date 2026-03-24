@@ -1,6 +1,5 @@
 package net.glasslauncher.glassbrigadier.mixin.server;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.glasslauncher.glassbrigadier.GlassBrigadier;
 import net.glasslauncher.glassbrigadier.api.command.GlassCommandSource;
@@ -11,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(ServerCommandHandler.class)
 public class ServerCommandHandlerMixin {
@@ -33,7 +31,7 @@ public class ServerCommandHandlerMixin {
             return;
         }
         try {
-            GlassBrigadier.dispatcher.execute(command.commandAndArgs, (GlassCommandSource) command.output);
+            GlassBrigadier.DISPATCHER.execute(command.commandAndArgs, (GlassCommandSource) command.output);
         } catch (CommandSyntaxException e) {
             command.output.sendMessage(e.getMessage());
         }

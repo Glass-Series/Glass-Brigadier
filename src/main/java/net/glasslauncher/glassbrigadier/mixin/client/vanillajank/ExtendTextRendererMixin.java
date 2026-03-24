@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Mixin(TextRenderer.class)
-public abstract class ExtendTextRenderer implements SplittingTextRenderer {
+public abstract class ExtendTextRendererMixin implements SplittingTextRenderer {
 
     @Shadow public abstract int getWidth(String text);
 
