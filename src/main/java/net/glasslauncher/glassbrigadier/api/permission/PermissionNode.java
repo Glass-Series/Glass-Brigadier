@@ -24,6 +24,11 @@ public record PermissionNode<T>(
     public static Function<Boolean, Object> BOOLEAN_SAVE = blindSave();
     public static Function<String, Boolean> BOOLEAN_PARSE = Boolean::valueOf;
 
+    public static IsValuePositivePredicate<String> STRING = notNullPositive();
+    public static Function<Object, String> STRING_LOAD = blindLoad();
+    public static Function<String, Object> STRING_SAVE = blindSave();
+    public static Function<String, String> STRING_PARSE = value -> value;
+
     public static IsValuePositivePredicate<Integer> INTEGER = notNullPositive();
     public static Function<Object, Integer> INTEGER_LOAD = blindLoad();
     public static Function<Integer, Object> INTEGER_SAVE = blindSave();
@@ -34,7 +39,7 @@ public record PermissionNode<T>(
         return null;
     };
 
-    public static <T> Function<Object, T> blindLoad() {
+    public static <T> Function<Object, T> blindLoad() { // TODO: Make this actually verify contents
         //noinspection unchecked
         return val -> (T) val;
     }
@@ -82,6 +87,14 @@ public record PermissionNode<T>(
     public static <T> PermissionNode<T> register(String path, IsValuePositivePredicate<T> positivePredicate, Function<Object, T> valueLoadFunction, Function<T, Object> valueSaveFunction, Function<String, T> valueFromArgumentFunction) {
         //noinspection unchecked Ahahaha fuck type erasure fuck type erasure fuck type erasure fucking why
         return (PermissionNode<T>) CACHE.get(path, path_ -> new PermissionNode<>(path_, positivePredicate, valueLoadFunction, valueSaveFunction, valueFromArgumentFunction, false));
+    }
+
+    /**
+     * Register the permission node for use.
+     */
+    public static <T> PermissionNode<T> registerString(String path) {
+        //noinspection unchecked Ahahaha fuck type erasure fuck type erasure fuck type erasure fucking why
+        return (PermissionNode<T>) CACHE.get(path, path_ -> new PermissionNode<>(path_, STRING, STRING_LOAD, STRING_SAVE, STRING_PARSE, false));
     }
 
     /**
