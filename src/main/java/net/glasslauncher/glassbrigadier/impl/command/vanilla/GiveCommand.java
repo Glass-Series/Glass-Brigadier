@@ -26,7 +26,6 @@ public class GiveCommand implements CommandProvider {
     @Override
     public LiteralArgumentBuilder<GlassCommandSource> get() {
         return GlassCommandBuilder.literal("give", "Gives the specified player the specified item.", "Gives the specified player the specified item.")
-                .alias("g")
                 .requires(booleanPermission("command.give"))
                 .then(GlassArgumentBuilder.argument("player", entity())
                         .then(GlassArgumentBuilder.argument("item", itemId())

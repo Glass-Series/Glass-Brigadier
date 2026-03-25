@@ -28,7 +28,7 @@ import static net.glasslauncher.glassbrigadier.GlassBrigadier.systemMessageColor
 import static net.modificationstation.stationapi.api.util.Formatting.RED;
 
 public class HelpCommand implements CommandProvider {
-    private static final SimpleCommandExceptionType FAILED_EXCEPTION = new SimpleCommandExceptionType(() -> "Unknown command or insufficient permissions");
+    private static final SimpleCommandExceptionType FAILED_EXCEPTION = new SimpleCommandExceptionType(() -> Formatting.RED + "Unknown command or insufficient permissions");
 
     @Override
     public LiteralArgumentBuilder<GlassCommandSource> get() {

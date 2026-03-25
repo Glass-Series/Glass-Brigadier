@@ -12,7 +12,7 @@ import static net.glasslauncher.glassbrigadier.impl.argument.GlassArgumentBuilde
 public class ExecuteVanillaCommand implements CommandProvider {
     @Override
     public LiteralArgumentBuilder<GlassCommandSource> get() {
-        return GlassCommandBuilder.literal("executevanilla", "Executes a command that isn't handled by Glass Essentials.")
+        return GlassCommandBuilder.literal("executevanilla", "Executes a command that isn't handled by Glass Brigadier.")
                 .alias("ev")
                 .requires(booleanPermission("command.executevanilla"))
                 .then(
