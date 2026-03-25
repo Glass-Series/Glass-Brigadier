@@ -36,7 +36,8 @@
   "accessWidener": "glassbrigadier.accesswidener",
 
   "depends": {
-    "minecraft": "1.0.0-beta.7.3"
+    "minecraft": "1.0.0-beta.7.3",
+    "gcapi3": ">=3.0.0"
   },
 
   "custom": {
