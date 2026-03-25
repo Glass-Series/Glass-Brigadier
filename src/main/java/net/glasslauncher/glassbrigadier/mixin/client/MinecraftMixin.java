@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.glasslauncher.glassbrigadier.GlassBrigadier;
 import net.glasslauncher.glassbrigadier.api.event.CommandRegisterEvent;
+import net.glasslauncher.glassbrigadier.api.event.GlassBrigadierDefaultsEvent;
 import net.glasslauncher.glassbrigadier.api.permission.PermissionNodeInstance;
 import net.glasslauncher.glassbrigadier.api.storage.player.PlayerStorageFile;
 import net.glasslauncher.glassbrigadier.api.storage.world.WorldModStorageFile;
@@ -34,6 +35,7 @@ public class MinecraftMixin {
     void registerCommands(CallbackInfo ci) {
         GlassBrigadier.LOGGER.info("Initializing commands...");
         StationAPI.EVENT_BUS.post(CommandRegisterEvent.builder().commandDispatcher(GlassBrigadier.DISPATCHER).build());
+        StationAPI.EVENT_BUS.post(GlassBrigadierDefaultsEvent.builder().build());
         GlassBrigadier.LOGGER.info("Registered {} commands.", GlassBrigadier.DISPATCHER.getRoot().getChildren().size());
     }
 

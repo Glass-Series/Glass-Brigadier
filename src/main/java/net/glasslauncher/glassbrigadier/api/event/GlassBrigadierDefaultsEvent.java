@@ -1,15 +1,15 @@
 package net.glasslauncher.glassbrigadier.api.event;
 
+import lombok.experimental.SuperBuilder;
 import net.glasslauncher.glassbrigadier.api.storage.player.PlayerStorageFile;
 import net.glasslauncher.glassbrigadier.api.storage.world.WorldModStorageFile;
 import net.mine_diver.unsafeevents.Event;
+import net.mine_diver.unsafeevents.event.EventPhases;
 import org.simpleyaml.configuration.Configuration;
 
 import java.util.Map;
 
-/**
- * This is mostly used internally, though mods are welcome to hook into this system for tying data to players in an easy to access way for admins.
- */
+@SuperBuilder
 public class GlassBrigadierDefaultsEvent extends Event {
 
     public void addPlayerDefault(String key, Object entry) {
@@ -43,6 +43,5 @@ public class GlassBrigadierDefaultsEvent extends Event {
     public Configuration getWorldDefaults() {
         return WorldModStorageFile.WORLD_DATA_DEFAULTS;
     }
-    
-    
+
 }

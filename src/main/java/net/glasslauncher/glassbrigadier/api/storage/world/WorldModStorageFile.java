@@ -60,7 +60,7 @@ public class WorldModStorageFile extends StorageFile {
     protected WorldModStorageFile(File file) {
         super(file);
 
-        setHeader(GlassBrigadier.NAMESPACE.getName().toUpperCase() + """
+        setHeader(GlassBrigadier.NAMESPACE.getName().toUpperCase() + " " + """
                 WORLD STORAGE FILE
                 DO NOT EDIT WITHOUT BACKING UP FIRST
                 """);
