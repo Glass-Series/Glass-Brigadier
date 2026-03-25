@@ -2,11 +2,13 @@ package net.glasslauncher.glassbrigadier.impl.command;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
+import net.glasslauncher.glassbrigadier.GlassBrigadier;
 import net.glasslauncher.glassbrigadier.api.command.CommandProvider;
 import net.glasslauncher.glassbrigadier.api.command.GlassCommandSource;
 import net.glasslauncher.glassbrigadier.api.predicate.HasPermission;
 import net.glasslauncher.glassbrigadier.api.storage.player.PlayerStorageFile;
 import net.glasslauncher.glassbrigadier.impl.argument.GlassArgumentBuilder;
+import net.modificationstation.stationapi.api.util.Formatting;
 import org.simpleyaml.configuration.ConfigurationSection;
 
 import java.io.IOException;
@@ -32,7 +34,7 @@ public class DelHomeCommand implements CommandProvider {
         ConfigurationSection homes = playerStorage.getNotNullSection("homes");
 
         if (!homes.contains(name)) {
-            context.getSource().sendFeedback("No such home \"" + name + "\".");
+            context.getSource().sendFeedback(Formatting.RED + "No such home \"" + name + "\".");
             return 0;
         }
 
@@ -43,7 +45,7 @@ public class DelHomeCommand implements CommandProvider {
             throw new RuntimeException(e);
         }
 
-        context.getSource().sendFeedback("Removed home \"" + name + "\".");
+        context.getSource().sendFeedback(GlassBrigadier.systemMessage("Removed home \"" + name + "\"."));
         return 0;
     }
 }

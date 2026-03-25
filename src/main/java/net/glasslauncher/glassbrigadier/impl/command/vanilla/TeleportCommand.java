@@ -80,6 +80,6 @@ public class TeleportCommand implements CommandProvider {
             entity.setPositionAndAnglesKeepPrevAngles(position.x, position.y, position.z, yaw, pitch);
         }
 
-        this.sendFeedbackAndLog(sender, String.format("Teleporting %s to %s (%f %f)", EntityUtils.getName(entity), position, yaw, pitch));
+        sendFeedbackAndLog(sender, String.format("Teleporting %s to %s (%f %f)", EntityUtils.getName(entity), position, yaw, pitch));
     }
 }

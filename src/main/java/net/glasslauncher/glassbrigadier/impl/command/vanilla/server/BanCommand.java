@@ -13,7 +13,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
 import net.modificationstation.stationapi.api.util.Formatting;
 
+import static net.glasslauncher.glassbrigadier.GlassBrigadier.systemMessage;
 import static net.glasslauncher.glassbrigadier.api.predicate.HasPermission.booleanPermission;
+import static net.modificationstation.stationapi.api.util.Formatting.RED;
 
 public class BanCommand implements CommandProvider {
     @Override
@@ -31,16 +33,16 @@ public class BanCommand implements CommandProvider {
         //noinspection deprecation
         PlayerManager playerManager = ((MinecraftServer) FabricLoader.getInstance().getGameInstance()).playerManager;
         if (playerManager.bannedPlayers.contains(player.toLowerCase().strip())) {
-            context.getSource().sendFeedback(Formatting.RED + player + " is already banned!");
+            context.getSource().sendFeedback(RED + player + " is already banned!");
             return 0;
         }
 
         playerManager.banPlayer(player);
         ServerPlayerEntity playerEntity = ((ServerPlayerEntity) context.getSource().getPlayerByName(player));
         if (playerEntity != null) {
-            playerEntity.networkHandler.disconnect(Formatting.RED + "Banned by admin.");
+            playerEntity.networkHandler.disconnect(RED + "Banned by admin.");
         }
-        sendFeedbackAndLog(context.getSource(), "Banned " + player + ".");
+        sendFeedbackAndLog(context.getSource(), systemMessage(RED + "Banned " + player + "."));
 
         return 0;
     }

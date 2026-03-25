@@ -12,6 +12,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
 import net.modificationstation.stationapi.api.util.Formatting;
 
+import static net.glasslauncher.glassbrigadier.GlassBrigadier.systemMessage;
 import static net.glasslauncher.glassbrigadier.api.argument.playerselector.TargetSelectorArgumentType.getPlayers;
 import static net.glasslauncher.glassbrigadier.api.predicate.HasPermission.booleanPermission;
 
@@ -35,7 +36,7 @@ public class PardonCommand implements CommandProvider {
                 return;
             }
             playerManager.unbanPlayer(player.name);
-            sendFeedbackAndLog(context.getSource(), "Unbanned " + player.name + ".");
+            sendFeedbackAndLog(context.getSource(), systemMessage("Unbanned " + player.name + "."));
         });
         return 0;
     }

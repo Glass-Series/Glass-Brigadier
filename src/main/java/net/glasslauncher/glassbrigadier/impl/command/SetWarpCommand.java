@@ -17,6 +17,7 @@ import java.util.HashMap;
 
 import static com.mojang.brigadier.arguments.StringArgumentType.greedyString;
 import static com.mojang.brigadier.arguments.StringArgumentType.word;
+import static net.glasslauncher.glassbrigadier.GlassBrigadier.systemMessage;
 import static net.glasslauncher.glassbrigadier.api.predicate.HasPermission.booleanPermission;
 import static net.glasslauncher.glassbrigadier.api.predicate.IsPlayer.isPlayer;
 
@@ -60,7 +61,7 @@ public class SetWarpCommand implements CommandProvider {
             throw new RuntimeException(e);
         }
 
-        context.getSource().sendFeedback("Set warp \"" + name + "\".");
+        sendFeedbackAndLog(context.getSource(), systemMessage("Set warp \"" + name + "\"."));
         return 0;
     }
 }

@@ -12,6 +12,7 @@ import java.util.function.Function;
 
 import static com.mojang.brigadier.arguments.LongArgumentType.getLong;
 import static com.mojang.brigadier.arguments.LongArgumentType.longArg;
+import static net.glasslauncher.glassbrigadier.GlassBrigadier.systemMessage;
 import static net.glasslauncher.glassbrigadier.api.predicate.HasPermission.booleanPermission;
 
 public class TimeCommand implements CommandProvider {
@@ -52,7 +53,7 @@ public class TimeCommand implements CommandProvider {
                                         .executes(context -> {
                                             World level = (context.getSource()).getWorld();
                                             level.setTime(level.getTime()+getLong(context, "time"));
-                                            sendFeedbackAndLog(context.getSource(), "Set time to " + level.getTime());
+                                            sendFeedbackAndLog(context.getSource(), systemMessage("Set time to " + level.getTime()));
                                             return 0;
                                         }))
                 );
@@ -63,7 +64,7 @@ public class TimeCommand implements CommandProvider {
             logWarn("Time was " + context.getSource().getWorld().getTime());
             long timeValue = time.apply(context);
             context.getSource().getWorld().setTime(timeValue);
-            sendFeedbackAndLog(context.getSource(), "Set time to " + timeValue);
+            sendFeedbackAndLog(context.getSource(), systemMessage("Set time to " + timeValue));
             return 0;
         };
     }

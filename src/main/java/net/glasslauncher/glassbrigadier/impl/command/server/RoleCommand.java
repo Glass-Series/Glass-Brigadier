@@ -96,7 +96,7 @@ public class RoleCommand implements CommandProvider {
         Role role = context.getArgument("role", Role.class); // Sure would be nice to not have to specify this cause the field type's there- oh right, kotlin does this.
         PermissionNode<?> node = context.getArgument("permission", PermissionNode.class);
         if (role.setPermission(node, value)) {
-            context.getSource().sendFeedback(systemMessage("Set \"" + node.path() + "\" to \"" + value + "\"."));
+            sendFeedbackAndLog(context.getSource(), systemMessage("Set \"" + node.path() + "\" to \"" + value + "\"."));
         }
         else {
             context.getSource().sendFeedback(Formatting.RED + "Failed to set \"" + node.path() + "\" to \"" + value + "\". Did you type the value correctly?");
@@ -159,7 +159,7 @@ public class RoleCommand implements CommandProvider {
         Role role = context.getArgument("role", Role.class);
         role.setSuffix(suffix);
         RoleManagerImpl.updateAndSaveRolesFile();
-        context.getSource().sendFeedback(systemMessage("Successfully updated suffix for " + role.getName() + ". Example: " + role.getDisplay("User")));
+        sendFeedbackAndLog(context.getSource(), systemMessage("Successfully updated suffix for " + role.getName() + ". Example: " + role.getDisplay("User")));
         return 0;
     }
 
@@ -167,7 +167,7 @@ public class RoleCommand implements CommandProvider {
         Role role = context.getArgument("role", Role.class);
         role.setPrefix(prefix);
         RoleManagerImpl.updateAndSaveRolesFile();
-        context.getSource().sendFeedback(systemMessage("Successfully updated prefix for " + role.getName() + ". Example: " + role.getDisplay("User")));
+        sendFeedbackAndLog(context.getSource(), systemMessage("Successfully updated prefix for " + role.getName() + ". Example: " + role.getDisplay("User")));
         return 0;
     }
 
@@ -179,7 +179,7 @@ public class RoleCommand implements CommandProvider {
         }
 
         RoleManagerImpl.updateAndSaveRolesFile();
-        context.getSource().sendFeedback(systemMessage("Successfully created role \"" + role + "\"."));
+        sendFeedbackAndLog(context.getSource(), systemMessage("Successfully created role \"" + role + "\"."));
         return 0;
     }
 }

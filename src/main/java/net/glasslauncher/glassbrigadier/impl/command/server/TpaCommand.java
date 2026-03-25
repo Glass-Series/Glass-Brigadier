@@ -17,10 +17,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import static net.glasslauncher.glassbrigadier.GlassBrigadier.systemMessage;
 import static net.glasslauncher.glassbrigadier.api.argument.playerselector.TargetSelectorArgumentType.getPlayers;
 import static net.glasslauncher.glassbrigadier.api.argument.playerselector.TargetSelectorArgumentType.player;
 import static net.glasslauncher.glassbrigadier.api.predicate.HasPermission.booleanPermission;
 import static net.glasslauncher.glassbrigadier.api.predicate.IsPlayer.isPlayer;
+import static net.modificationstation.stationapi.api.util.Formatting.RED;
 
 public class TpaCommand implements CommandProvider {
     /// Username to last made request.
@@ -84,8 +86,8 @@ public class TpaCommand implements CommandProvider {
             return invalid(context);
         }
 
-        context.getSource().sendFeedback("Denied TPA from " + tpaData.tpaRequest().sourceName());
-        tpaData.playerEntity().sendMessage(Formatting.RED + "Your TPA request was denied.");
+        context.getSource().sendFeedback(RED + "Denied TPA from " + tpaData.tpaRequest().sourceName());
+        tpaData.playerEntity().sendMessage(RED + "Your TPA request was denied.");
         tpaData.tpaRequest.delete();
         return 0;
     }
@@ -97,15 +99,15 @@ public class TpaCommand implements CommandProvider {
         }
 
         if (playerEntity.get().name.equals(context.getSource().getSourceName())) {
-            context.getSource().sendFeedback(Formatting.RED + "You can't send TPAs to yourself.");
+            context.getSource().sendFeedback(RED + "You can't send TPAs to yourself.");
             return 0;
         }
 
         TpaRequest request = new TpaRequest(playerEntity.get().name, context.getSource().getSourceName(), System.currentTimeMillis() / 1000L);
         TPA_REQUESTS_FROM.put(context.getSource().getSourceName(), request);
         TPA_REQUESTS_TO.put(playerEntity.get().name, request);
-        context.getSource().sendFeedback("TPA request sent to " + playerEntity.get().name);
-        playerEntity.get().sendMessage(Formatting.AQUA + context.getSource().getSourceName() + " has requested a teleport! Type " + Formatting.RED + "/tpa yes" + Formatting.AQUA + " to accept.");
+        context.getSource().sendFeedback(systemMessage("TPA request sent to " + playerEntity.get().name));
+        playerEntity.get().sendMessage(Formatting.AQUA + context.getSource().getSourceName() + " has requested a teleport! Type " + RED + "/tpa yes" + Formatting.AQUA + " to accept.");
         return 0;
     }
 
@@ -140,7 +142,7 @@ public class TpaCommand implements CommandProvider {
     }
 
     public int invalid(CommandContext<GlassCommandSource> context) {
-        context.getSource().sendFeedback("No valid TPA request found.");
+        context.getSource().sendFeedback(RED + "No valid TPA request found.");
         return 0;
     }
 

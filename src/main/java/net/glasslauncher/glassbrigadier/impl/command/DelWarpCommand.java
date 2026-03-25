@@ -44,7 +44,7 @@ public class DelWarpCommand implements CommandProvider {
             throw new RuntimeException(e);
         }
 
-        context.getSource().sendFeedback("Deleted warp \"" + name + "\".");
+        context.getSource().sendFeedbackAndLog(GlassBrigadier.systemMessage("Deleted warp \"" + name + "\"."));
         return 0;
     }
 }

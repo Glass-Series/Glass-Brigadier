@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.mojang.brigadier.arguments.StringArgumentType.word;
+import static net.glasslauncher.glassbrigadier.GlassBrigadier.systemMessage;
 import static net.glasslauncher.glassbrigadier.api.predicate.HasPermission.booleanPermission;
 import static net.glasslauncher.glassbrigadier.api.predicate.IsPlayer.isPlayer;
 
@@ -52,6 +53,6 @@ public class SetHomeCommand implements CommandProvider {
             throw new RuntimeException(e);
         }
 
-        context.getSource().sendFeedback("Set home \"" + name + "\".");
+        context.getSource().sendFeedback(systemMessage("Set home \"" + name + "\"."));
     }
 }

@@ -13,6 +13,7 @@ import net.minecraft.server.PlayerManager;
 import net.modificationstation.stationapi.api.util.Formatting;
 
 import static com.mojang.brigadier.arguments.StringArgumentType.getString;
+import static net.glasslauncher.glassbrigadier.GlassBrigadier.systemMessage;
 import static net.glasslauncher.glassbrigadier.api.predicate.HasPermission.booleanPermission;
 import static net.glasslauncher.glassbrigadier.impl.command.vanilla.server.BanIpCommand.IP_REGEX;
 
@@ -41,7 +42,7 @@ public class PardonIpCommand implements CommandProvider {
         }
 
         playerManager.unbanIp(ip);
-        sendFeedbackAndLog(context.getSource(), "Unbanned " + ip + ".");
+        sendFeedbackAndLog(context.getSource(), systemMessage("Unbanned " + ip + "."));
         return 0;
     }
 }

@@ -49,7 +49,7 @@ public class GiveCommand implements CommandProvider {
 
         players.forEach(playerEntity -> {
             int item = getItemId(context, "item").numericId;
-            context.getSource().sendFeedback(Formatting.GRAY + "Giving " + playerEntity.name + " some " + item);
+            sendFeedbackAndLog(context.getSource(), Formatting.GRAY + "Giving " + playerEntity.name + " some " + item);
             playerEntity.dropItem(item, 1, 0);
 
         });

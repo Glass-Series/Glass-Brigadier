@@ -18,7 +18,9 @@ import java.util.regex.Pattern;
 
 import static com.mojang.brigadier.arguments.StringArgumentType.getString;
 import static com.mojang.brigadier.arguments.StringArgumentType.word;
+import static net.glasslauncher.glassbrigadier.GlassBrigadier.systemMessage;
 import static net.glasslauncher.glassbrigadier.api.predicate.HasPermission.booleanPermission;
+import static net.modificationstation.stationapi.api.util.Formatting.RED;
 
 public class BanIpCommand implements CommandProvider {
     public static final Pattern IP_REGEX = Pattern.compile("(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)");
@@ -36,26 +38,26 @@ public class BanIpCommand implements CommandProvider {
         String ip = getString(context, "ip").toLowerCase().strip();
 
         if (!IP_REGEX.matcher(ip).matches()) {
-            context.getSource().sendFeedback(Formatting.RED + ip + " isn't a valid IP address!");
+            context.getSource().sendFeedback(RED + ip + " isn't a valid IP address!");
             return 0;
         }
         //noinspection deprecation
         PlayerManager playerManager = ((MinecraftServer) FabricLoader.getInstance().getGameInstance()).playerManager;
 
         if (playerManager.bannedIps.contains(ip)) {
-            context.getSource().sendFeedback(Formatting.RED + ip + " is already banned!");
+            context.getSource().sendFeedback(RED + ip + " is already banned!");
             return 0;
         }
 
         //noinspection unchecked
         for (ServerPlayerEntity player : new ArrayList<ServerPlayerEntity>(playerManager.players)) {
             if (((InetSocketAddress) player.networkHandler.connection.getAddress()).getHostString().equals(ip)) {
-                player.networkHandler.disconnect(Formatting.RED + "Banned by admin.");
+                player.networkHandler.disconnect(RED + "Banned by admin.");
             }
         }
 
         playerManager.banIp(ip);
-        sendFeedbackAndLog(context.getSource(), "IP banned " + ip + ".");
+        sendFeedbackAndLog(context.getSource(), systemMessage(RED + "IP banned " + ip + "."));
         return 0;
     }
 }
