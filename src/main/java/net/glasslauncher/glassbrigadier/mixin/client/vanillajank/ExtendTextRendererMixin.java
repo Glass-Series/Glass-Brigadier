@@ -15,7 +15,7 @@ public abstract class ExtendTextRendererMixin implements SplittingTextRenderer {
 
     @Shadow public abstract int getWidth(String text);
 
-    public List<String> glass_Essentials$split(String text, int width) {
+    public List<String> glass_Brigadier$split(String text, int width) {
         return Arrays.asList(this.insertLineBreaks(text, width).split("\n"));
     }
 

@@ -30,7 +30,7 @@ public class FixChatLineBreaksMixin {
 
     @Inject(method = "addChatMessage", at = @At("HEAD"))
     void fineIllDoItMyself(String message, CallbackInfo ci) {
-        for (String line : ((SplittingTextRenderer) Minecraft.INSTANCE.textRenderer).glass_Essentials$split(message, 320)) {
+        for (String line : ((SplittingTextRenderer) Minecraft.INSTANCE.textRenderer).glass_Brigadier$split(message, 320)) {
             //noinspection unchecked
             messages.add(0, new ChatHudLine(line));
         }

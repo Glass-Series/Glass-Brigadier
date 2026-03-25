@@ -89,7 +89,7 @@ public class GlassBrigadierAutocompleteResponsePacket extends Packet implements 
         Screen screen = Minecraft.INSTANCE.currentScreen;
         if (screen instanceof ChatScreen chatScreen) {
             if (!completions.isEmpty()) {
-                ((ChatScreenHooks) chatScreen).glass_Essentials$setCompletions(completions);
+                ((ChatScreenHooks) chatScreen).glass_Brigadier$setCompletions(completions);
             }
         }
     }

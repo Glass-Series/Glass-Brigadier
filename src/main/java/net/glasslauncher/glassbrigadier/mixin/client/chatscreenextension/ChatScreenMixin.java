@@ -57,7 +57,7 @@ public class ChatScreenMixin extends Screen implements ChatScreenHooks {
     private int lockedSuggestionPosition = 0;
 
     @Override
-    public void glass_Essentials$setCompletions(List<String> completions) {
+    public void glass_Brigadier$setCompletions(List<String> completions) {
         this.completions = completions;
     }
 
@@ -150,7 +150,7 @@ public class ChatScreenMixin extends Screen implements ChatScreenHooks {
 
     @Unique
     void invalidateSuggestions() {
-        glass_Essentials$setCompletions(null);
+        glass_Brigadier$setCompletions(null);
         lockedSuggestionPosition = 0;
         currentCompletion = 0;
     }
@@ -243,7 +243,7 @@ public class ChatScreenMixin extends Screen implements ChatScreenHooks {
     }
 
     @Override
-    public ExtensibleTextFieldWidget glass_Essentials$getTextField() {
+    public ExtensibleTextFieldWidget glass_Brigadier$getTextField() {
         return textFieldWidget;
     }
 }

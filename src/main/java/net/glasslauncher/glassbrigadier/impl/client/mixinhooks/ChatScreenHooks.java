@@ -5,7 +5,7 @@ import net.glasslauncher.mods.gcapi3.impl.screen.widget.ExtensibleTextFieldWidge
 import java.util.List;
 
 public interface ChatScreenHooks {
-    void glass_Essentials$setCompletions(List<String> completions);
-    ExtensibleTextFieldWidget glass_Essentials$getTextField();
+    void glass_Brigadier$setCompletions(List<String> completions);
+    ExtensibleTextFieldWidget glass_Brigadier$getTextField();
 
 }
